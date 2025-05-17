@@ -1,0 +1,95 @@
+Groups:
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<parameter name="url" value="https://www.facebook.com/"></parameter>
+	<parameter name="username" value="test@gamil.com"></parameter>
+	<parameter name="pwd" value="test@123A"></parameter>
+	<groups>
+		<run>
+			<include name="unit"></include>
+		</run>
+	</groups>
+	<test thread-count="5" name="Test">
+		<classes>
+			<class name="org.test.testng.GroupsTestExecution" />
+
+		</classes>
+
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
+=============================================================================
+package org.test.testng;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import basemethods.BaseClass;
+import constants.URLCosntants;
+import pages.FBLoginPage;
+
+public class GroupsTestExecution {
+
+	BaseClass baseclass = new BaseClass();
+
+	@Test(groups = { "regression", "smoke", "sanity" })
+	public void moveToElementMethod() {
+
+		baseclass.chromeBrowserSetup();
+
+		WebDriver driverAfterURLLoad = baseclass.getURL(URLCosntants.fbURL);
+
+		FBLoginPage loginpage = new FBLoginPage(driverAfterURLLoad);
+
+		WebElement element = loginpage.getforgotpwd();
+
+		baseclass.moveToElement(element);
+
+		baseclass.closeBrowser();
+	}
+
+	@Parameters("url")
+	@Test(groups = { "regression" })
+	public void contextClick(String url) {
+		baseclass.chromeBrowserSetup();
+
+		WebDriver driverAfterURLLoad = baseclass.getURL(url);
+
+		FBLoginPage loginpage = new FBLoginPage(driverAfterURLLoad);
+
+		WebElement righClickelement = loginpage.getforgotpwd();
+
+		baseclass.contextClick(righClickelement);
+
+		baseclass.closeBrowser();
+
+	}
+
+	@Parameters({ "url", "username", "pwd" })
+	@Test(groups = { "unit" })
+	public void optionalAnnotationMethod(String url, @Optional("crbalaji7@gmail.com") String username, String pwd) {
+
+		System.out.println("Unit Test alone");
+
+		baseclass.chromeBrowserSetup();
+
+		WebDriver driverAfterURLLoad = baseclass.getURL(url);
+
+		FBLoginPage loginpage = new FBLoginPage(driverAfterURLLoad);
+
+		loginpage.getUsername().sendKeys(username);
+
+		loginpage.getPassword().sendKeys(pwd);
+
+		baseclass.closeBrowser();
+
+	}
+
+}
+=================================================================================================

@@ -1,0 +1,37 @@
+13)Collection of Groups:
+========================
+Inorder to avoid <include> mor time we go for Collection of groups concept
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SuiteCollection">
+	<test thread-count="5" name="TestCollection">
+		<parameter name="url" value="https://www.facebook.com/"></parameter>
+		<parameter name="username" value="test@gamil.com"></parameter>
+		<parameter name="pwd" value="test@123A"></parameter>
+		<groups>
+			<define name="all">
+				<include name="regression"></include>
+				<include name="smoke"></include>
+				<include name="sanity"></include>
+				<include name="unit"></include>
+			</define>
+			<define name="unitGroup">
+				<include name="unit"></include>
+
+			</define>
+
+			<run>
+				<include name="all"></include>
+			</run>
+		</groups>
+
+		<classes>
+
+			<class name="org.test.testng.GroupsTestExecution" />
+		</classes>
+	</test> <!--
+	TestCollection -->
+</suite> <!--
+SuiteCollection -->
+

@@ -1,0 +1,42 @@
+15)DataProvider-I
+=================
+Single Test with multiple Data.
+package org.test.testng;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+import basemethods.BaseClass;
+import pages.FBLoginPage;
+
+public class DataProviderImplementationOne {
+
+	BaseClass baseclass = new BaseClass();
+
+	@Test(dataProvider = "data")
+	public void optionalAnnotationMethod(String url, String userName, String pwd) {
+
+		baseclass.chromeBrowserSetup();
+
+		WebDriver driverAfterURLLoad = baseclass.getURL(url);
+
+		FBLoginPage loginpage = new FBLoginPage(driverAfterURLLoad);
+
+		loginpage.getUsername().sendKeys(userName);
+
+		loginpage.getPassword().sendKeys(pwd);
+
+		baseclass.closeBrowser();
+
+	}
+
+	@DataProvider(name = "data")
+	public Object[][] data() {
+		return new Object[][] { { "https://www.facebook.com/", "crbalaji17@gamil.com", "test@123A" },
+				{ "https://www.facebook.com/", "test@email.com", "test@123A" } };
+	}
+
+}

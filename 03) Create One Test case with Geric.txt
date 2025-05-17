@@ -1,0 +1,25 @@
+03) Create One Test case with Geric kind of project setup
+==========================================================
+*Page object model
+*BaseClass
+*URL Constants
+
+
+POM
+===
+1)under src/main/java-Create package called Pages
+2)under that will need to create each page POM class where  sotre our WebElements using Encapsulation class
+
+Base Class Creation:
+===================
+1) under src/main/java-Create package called basemethods
+2) Create class called BaseClass.java where can store base methods with respect to Selenium concepts
+
+URL Constants class creations:
+==============================
+1) under src/main/java-Create package called constants
+2) Create class called URLConstants.java where can store base methods with respect to Selenium concepts
+
+Then Create drivers foler to keep browser drivers under java/test/resources->keep all browser drivers
+
+Create a package tests->under java/test/main-> create our test class

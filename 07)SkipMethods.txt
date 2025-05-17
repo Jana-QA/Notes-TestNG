@@ -1,0 +1,45 @@
+07)SkipMethods
+===============
+@Test(enabled=fals)
+
+Particular method will get ignored or skipped
+@Test(invocationCount = 1,enabled=false)
+	public void moveToElementMethod() {
+
+		baseclass.chromeBrowserSetup();
+
+		WebDriver driverAfterURLLoad = baseclass.getURL(URLCosntants.fbURL);
+
+		FBLoginPage loginpage = new FBLoginPage(driverAfterURLLoad);
+
+		WebElement element = loginpage.getforgotpwd();
+
+		baseclass.moveToElement(element);
+
+		baseclass.closeBrowser();
+	}
+
+500 methods out of this 499 TC's Skipped or ignored?
+Can execute only one method?
+
+<<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Suite">
+	<test thread-count="5" name="Test">
+		<parameter name="url" value="https://www.facebook.com/"></parameter>
+		<parameter name="username" value="test@gamil.com"></parameter>
+		<parameter name="pwd" value="test@123A"></parameter>
+		<classes>
+			<class name="SkipMethodsExecutions">
+				<methods>
+					<include name="doubleClick"></include>
+				</methods>
+			</class>
+		</classes>
+
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
+

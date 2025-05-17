@@ -1,0 +1,18 @@
+08)Packagee Execution
+=====================
+In a single package i need to run all classes under packager i no need to provide class name.
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+   <packages>
+	   <package name="org.test.testng"></package>
+   </packages>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+If need to execute all packages under JAVA Project
+<packages>
+	   <package name=".*"></package>
+   </packages>

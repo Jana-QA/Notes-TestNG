@@ -1,0 +1,55 @@
+09)Retry Automatically Known Failed TC's
+========================================
+[RemoteTestNG] detected TestNG version 7.8.0
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+
+===============================================
+Suite
+Total tests run: 13, Passes: 1, Failures: 1, Skips: 0, Retries: 11
+===============================================
+
+
+========================================================================================
+package org.test.testng;
+
+import org.testng.IRetryAnalyzer;
+import org.testng.ITestResult;
+
+public class RetryAnalyser implements IRetryAnalyzer {
+	int min = 0;
+	int max = 10;
+
+	@Override
+	public boolean retry(ITestResult result) {
+		if (min <= max) {
+			min++;
+			return true;
+		}
+		return false;
+	}
+
+}
+
+======================================================
+package org.test.testng;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class RetryAutomaticallyFailedTC {
+
+	@Test(retryAnalyzer = RetryAnalyser.class)
+	public void testName() {
+
+		Assert.assertEquals(false, true);
+
+	}
+
+	@Test
+	private void testName2() {
+		Assert.assertEquals(false, false);
+
+	}
+}
